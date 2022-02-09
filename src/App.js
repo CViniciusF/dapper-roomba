@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+
+import Grid from "./components/Grid/Grid";
+import { useState } from "react";
 
 function App() {
+  const [position, setPosition] = useState([0, 0]);
+  const [side, setSide] = useState(0);
+  //-> \/ <- /\
+  const handleMoveForward = () => {
+    if (side === 0) {
+      setPosition((oldPosition) => [oldPosition[0], oldPosition[1] + 1]);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Grid position={position} />
+      <button onClick={handleMoveForward}>Move forward</button>
+      <button>Turn</button>
+    </>
   );
 }
 
